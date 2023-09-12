@@ -16,7 +16,7 @@ int netlib_connect(lua_State *L) {
 
     int conn = socket(AF_INET, SOCK_STREAM, 0);
     if (conn == -1)
-        luaL_error(L, "connectTcp: socket(): %s\n", strerror(errno));
+        luaL_error(L, "connect:socket(): %s\n", strerror(errno));
 
     struct sockaddr_in addr = {
         .sin_family = AF_INET,
@@ -25,7 +25,7 @@ int netlib_connect(lua_State *L) {
     };
 
     if (connect(conn, (struct sockaddr*)&addr, sizeof(addr)) != 0)
-        luaL_error(L, "connectTcp: connect(): %s\n", strerror(errno));
+        luaL_error(L, "connect:connect(): %s\n", strerror(errno));
     
     lua_pushinteger(L, conn);
     return 1;
@@ -50,7 +50,7 @@ int netlib_read(lua_State *L) {
 
     char *buffer = malloc(buffer_len);
     if (!buffer)
-        luaL_error(L, "read: malloc(): couldnt alloc memory\n");
+        luaL_error(L, "read:malloc(): couldnt alloc memory\n");
 
     int len = read(conn, buffer, buffer_len);
 
