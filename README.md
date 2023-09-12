@@ -20,6 +20,7 @@ usage to decrypt:
   ./ransom [path] [key] [iv]
 ```
 > decrypt if the file extensions is .Pwnd
+
 > encrypt if the file extensions isnt't .Pwnd
 
 >> can change the extension in ransomlib.h:14
