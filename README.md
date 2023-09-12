@@ -9,6 +9,8 @@
 - On Linux do `make`
 > You will need the openssl lib
 
+>> can change the IP:PORT in random.lua
+
 ## Usage
 
 ```
