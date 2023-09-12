@@ -1,0 +1,2 @@
+# lcransom
+lua + c ransomware
